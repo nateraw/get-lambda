@@ -5,7 +5,7 @@ import os
 import time
 
 def main(instance_type):
-    sleep_time = 8
+    sleep_time = 5
     login(token=os.getenv('LAMBDA_CLOUD_TOKEN'))
 
     while True:
