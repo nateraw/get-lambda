@@ -22,6 +22,10 @@ on:
             - "gpu_2x_a6000"
             - "gpu_4x_a6000"
             - "gpu_8x_v100"
+      file_system_names:
+        description: 'File system names (optional)'
+        required: false
+        type: string
 
 jobs:
   create_instance:
@@ -41,4 +45,4 @@ jobs:
       env:
         LAMBDA_CLOUD_TOKEN: ${{ secrets.LAMBDA_CLOUD_TOKEN }}
       run: |
-        python create_instance.py --instance_type ${{ github.event.inputs.instance_type }}
+        python create_instance.py --instance_type ${{ github.event.inputs.instance_type }} ${{ if github.event.inputs.file_system_names }}--file_system_names ${{ github.event.inputs.file_system_names }}${{ endif }}
