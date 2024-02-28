@@ -17,9 +17,12 @@ def main(instance_type, file_system_names=None):
             print(f'No {instance_type} found...sleeping for {sleep_time} seconds')
             time.sleep(sleep_time)
 
-if __name__ == "__main__":
+
+def parse_args(args: str = None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--instance_type", type=str, required=True, help="Instance type to be created.")
     parser.add_argument("--file_system_names", type=str, default=None, required=False, help="File system to attach.")
-    args = parser.parse_args()
-    main(args.instance_type)
+    return parser.parse_args(args)
+
+if __name__ == "__main__":
+    main(**vars(parse_args()))
